@@ -1,5 +1,187 @@
 The Star app android automation framework using Appium
 
-1) Appium Version 1.10.0 (1.10.0.20181230.2)
+====== pre requisite installation required============
+
+node v10.2.1
+
+java version "1.8.0_171"
+
+npm v6.1.0
+
+appium 1.8.1
+
+
+1) Appium Version 1.10.0 (1.10.0.20181230.2) -- standalone installed version on mac
+   used to inspect android app elements
+
+   Desired Capabilities
+    {
+      "platformName": "Android",
+      "deviceName": "Android Emulator",
+      "app": "/Users/hostapp/Downloads/app-alphaFlavor-debug.apk",
+      "deviceName": "Android Emulator"
+    }
+
+2) Application under test : https://rink.hockeyapp.net/manage/dashboard
+
+2) Test Execution
+
+    1.1) android on npm version -- started by script
+
+    Stars-MacBook-Air:thestarautomationandroid hostapp$ npm list -g --depth=0
+
+        /usr/local/lib
+        ├── android@1.8.1
+        ├── android-doctor@1.4.3
+        ├── ios-deploy@1.9.2
+        ├── npm@6.1.0
+        └── wd@1.7.0
+
 2) The Star App : https://rink.hockeyapp.net/manage/dashboard
-3) TestNg , Selenium, Appium, Android
+3) Maven - TestNg (v 6.14.3), Selenium (v 3.141.5), Appium (v7.0.0), Android
+4) The star app, End to End test cases
+5) Testing Env : UAT (from the star club app settings)
+6) Emulator : Nexus 5 API 28
+              Android API 28
+              Portrait
+              Name: Nexus_5_API_28
+              ================ Emulator Details ===================
+              CPU/ABI: Google Play Intel Atom (x86)
+              Path: /Users/hostapp/.android/avd/Nexus_5_API_28.avd
+              Target: google_apis_playstore [Google Play] (API level 28)
+              Skin: nexus_5
+              SD Card: 100M
+              hw.dPad: no
+              hw.lcd.height: 1920
+              runtime.network.speed: full
+              hw.accelerometer: yes
+              hw.device.name: Nexus 5
+              vm.heapSize: 128
+              skin.dynamic: yes
+              hw.device.manufacturer: Google
+              hw.lcd.width: 1080
+              hw.gps: yes
+              hw.initialOrientation: Portrait
+              image.androidVersion.api: 28
+              hw.audioInput: yes
+              image.sysdir.1: system-images/android-28/google_apis_playstore/x86/
+              tag.id: google_apis_playstore
+              showDeviceFrame: yes
+              hw.camera.back: virtualscene
+              hw.mainKeys: no
+              AvdId: Nexus_5_API_28
+              hw.camera.front: emulated
+              hw.lcd.density: 480
+              avd.ini.displayname: Nexus 5 API 28
+              hw.arc: false
+              hw.gpu.mode: auto
+              hw.device.hash2: MD5:1c925b9117dd9f33c5128dac289a0d68
+              hw.ramSize: 1536
+              hw.trackBall: no
+              PlayStore.enabled: true
+              fastboot.forceColdBoot: no
+              hw.battery: yes
+              hw.cpu.ncore: 2
+              hw.sdCard: yes
+              tag.display: Google Play
+              runtime.network.latency: none
+              hw.keyboard: yes
+              hw.sensors.proximity: yes
+              disk.dataPartition.size: 6442450944
+              hw.sensors.orientation: yes
+              avd.ini.encoding: UTF-8
+              hw.gpu.enabled: yes
+
+
+
+TODO:
+
+    1) Current test case developed and debuged on Android emulator (not stable, sometimes it failed due to UIAutomator exception)
+
+    Execution Environment:
+
+        Android Emulator configuration :
+
+        Nexus 5X API 28
+        1080 x 1920 hdpi
+        Android API 28 x86
+        Portrait orientation
+        5.2 inch
+
+
+        Hardware Overview:
+
+          Model Name:	MacBook Air
+          Model Identifier:	MacBookAir7,2
+          Processor Name:	Intel Core i5
+          Processor Speed:	1.8 GHz
+          Number of Processors:	1
+          Total Number of Cores:	2
+          L2 Cache (per Core):	256 KB
+          L3 Cache:	3 MB
+          Memory:	8 GB
+          Boot ROM Version:	MBA71.0178.B00
+          SMC Version (system):	2.27f2
+          Serial Number (system):	C1MVC2N1J1WK
+          Hardware UUID:	8F36E075-9387-5E68-A679-084906695321
+
+    2) Most occurred error message, it happens when newly start Android emulator (need to fix this):
+
+    [UiAutomator] UiAutomator exited unexpectedly with code 255, signal null
+    Unhandled rejection Error: UiAUtomator shut down unexpectedly
+        at AndroidBootstrap.callee$2$0$ (/usr/local/lib/node_modules/android/node_modules/android-android-bootstrap/lib/bootstrap.js:177:42)
+        at tryCatch (/usr/local/lib/node_modules/android/node_modules/babel-runtime/regenerator/runtime.js:67:40)
+        at GeneratorFunctionPrototype.invoke [as _invoke] (/usr/local/lib/node_modules/android/node_modules/babel-runtime/regenerator/runtime.js:315:22)
+        at GeneratorFunctionPrototype.prototype.(anonymous function) [as next] (/usr/local/lib/node_modules/android/node_modules/babel-runtime/regenerator/runtime.js:100:21)
+        at invoke (/usr/local/lib/node_modules/android/node_modules/babel-runtime/regenerator/runtime.js:136:37)
+        at enqueueResult (/usr/local/lib/node_modules/android/node_modules/babel-runtime/regenerator/runtime.js:185:17)
+        at new Promise (<anonymous>)
+        at new F (/usr/local/lib/node_modules/android/node_modules/core-js/library/modules/$.export.js:30:36)
+        at AsyncIterator.enqueue (/usr/local/lib/node_modules/android/node_modules/babel-runtime/regenerator/runtime.js:184:12)
+        at AsyncIterator.prototype.(anonymous function) [as next] (/usr/local/lib/node_modules/android/node_modules/babel-runtime/regenerator/runtime.js:100:21)
+        at Object.runtime.async (/usr/local/lib/node_modules/android/node_modules/babel-runtime/regenerator/runtime.js:209:12)
+        at UiAutomator.callee$2$0 (/usr/local/lib/node_modules/android/node_modules/android-android-bootstrap/build/lib/bootstrap.js:357:42)
+        at UiAutomator.emit (events.js:182:13)
+        at UiAutomator.changeState (/usr/local/lib/node_modules/android/node_modules/android-uiautomator/lib/uiautomator.js:85:10)
+        at SubProcess.<anonymous> (/usr/local/lib/node_modules/android/node_modules/android-uiautomator/lib/uiautomator.js:47:14)
+        at SubProcess.emit (events.js:182:13)
+        at ChildProcess.<anonymous> (/usr/local/lib/node_modules/android/node_modules/teen_process/lib/subprocess.js:130:14)
+        at ChildProcess.emit (events.js:182:13)
+        at Process.ChildProcess._handle.onexit (internal/child_process.js:237:12)
+    [Appium] Received SIGINT - shutting down
+
+
+    3) Unexpected error generated (emulator related ??)
+[debug] [UiAutomator] Moving to state 'stopped'[UiAutomator] UiAutomator exited unexpectedly with code 255, signal null
+Unhandled rejection Error: UiAUtomator shut down unexpectedly
+    at AndroidBootstrap.callee$2$0$ (/usr/local/lib/node_modules/android/node_modules/android-android-bootstrap/lib/bootstrap.js:177:42)
+    at tryCatch (/usr/local/lib/node_modules/android/node_modules/babel-runtime/regenerator/runtime.js:67:40)
+    at GeneratorFunctionPrototype.invoke [as _invoke] (/usr/local/lib/node_modules/android/node_modules/babel-runtime/regenerator/runtime.js:315:22)
+    at GeneratorFunctionPrototype.prototype.(anonymous function) [as next] (/usr/local/lib/node_modules/android/node_modules/babel-runtime/regenerator/runtime.js:100:21)
+    at invoke (/usr/local/lib/node_modules/android/node_modules/babel-runtime/regenerator/runtime.js:136:37)
+    at enqueueResult (/usr/local/lib/node_modules/android/node_modules/babel-runtime/regenerator/runtime.js:185:17)
+    at new Promise (<anonymous>)
+    at new F (/usr/local/lib/node_modules/android/node_modules/core-js/library/modules/$.export.js:30:36)
+    at AsyncIterator.enqueue (/usr/local/lib/node_modules/android/node_modules/babel-runtime/regenerator/runtime.js:184:12)
+    at AsyncIterator.prototype.(anonymous function) [as next] (/usr/local/lib/node_modules/android/node_modules/babel-runtime/regenerator/runtime.js:100:21)
+    at Object.runtime.async (/usr/local/lib/node_modules/android/node_modules/babel-runtime/regenerator/runtime.js:209:12)
+    at UiAutomator.callee$2$0 (/usr/local/lib/node_modules/android/node_modules/android-android-bootstrap/build/lib/bootstrap.js:357:42)
+    at UiAutomator.emit (events.js:182:13)
+    at UiAutomator.changeState (/usr/local/lib/node_modules/android/node_modules/android-uiautomator/lib/uiautomator.js:85:10)
+    at SubProcess.<anonymous> (/usr/local/lib/node_modules/android/node_modules/android-uiautomator/lib/uiautomator.js:47:14)
+    at SubProcess.emit (events.js:182:13)
+    at ChildProcess.<anonymous> (/usr/local/lib/node_modules/android/node_modules/teen_process/lib/subprocess.js:130:14)
+    at ChildProcess.emit (events.js:182:13)
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:237:12)
+[Appium] Received SIGINT - shutting down
+[Logcat] Logcat terminated with code null, signal SIGINT
+
+Process finished with exit code 130 (interrupted by signal 2: SIGINT)
+
+    4) test data has been changed sometimes
+
+    for example :
+    java.lang.AssertionError: expected [ernest.test6@bluebatgames.com] but found [ernest.test7@bluebatgames.com]
+    Expected :ernest.test6@bluebatgames.com
+    Actual   :ernest.test7@bluebatgames.com
+

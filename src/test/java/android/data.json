@@ -1,0 +1,24 @@
+{
+  "dataSet": [
+    {
+      "username": "1442830",
+      "password": "star2468",
+      "memberName": "SUNNY P3 TEST",
+      "memberTier": "BRONZE",
+      "currentTierPoints": "0",
+      "nextTierPoints": "100",
+      "casinoDollars": "$0",
+      "email": "ernest.test7@bluebatgames.com"
+    }
+//    {
+//      "username": "1442831",
+//      "password": "star2468",
+//      "memberName": "KYLIE P2 TEST",
+//      "memberTier": "BRONZE",
+//      "currentTierPoints": "0",
+//      "nextTierPoints": "100",
+//      "casinoDollars": "$0",
+//      "email": "asfaoifjwoif@avewijo.vqa"
+//    }
+  ]
+}
